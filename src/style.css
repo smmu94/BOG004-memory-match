@@ -1,0 +1,32 @@
+.super {
+    width: 20%;
+    box-sizing: border-box;
+    border: 2px solid;
+    margin: 15px;
+    background-color: black;
+
+}
+.App {
+    width: 100%; 
+    
+}
+
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+body{
+    margin: 100px;
+    margin-right: 0%;
+    padding-left: 80px;
+}
+
+
