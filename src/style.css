@@ -1,32 +1,32 @@
 .super {
-    width: 20%;
-    box-sizing: border-box;
-    border: 2px solid;
-    margin: 15px;
-    background-color: black;
-
+  width: 16%;
+  box-sizing: border-box;
+  border: 2px solid;
+  margin: 15px;
+  border-radius: 5%;
+  background-color: black;
+  
 }
-.App {
-    width: 100%; 
-    
+.super .image{
+  width: 100%;
+  border-radius: 5%;
+  
 }
-
-
-
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    width: 80%;
-}
-
-body{
-    margin: 100px;
-    margin-right: 0%;
-    padding-left: 80px;
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  width: 80%;
+  background-image: url("images/backgroundmarvel1.jpg");
+  padding: 10px;
 }
 
-
+body {
+  margin: 100px;
+  margin-right: 80px;
+  padding-left: 80px;
+  background-image: url("images/marvel1.jpg");
+  
+}
