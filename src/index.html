@@ -5,8 +5,47 @@
     <title>Memory Match</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+  
   <body>
+    <div class="modalWindow" id="modalWindow">
+      <div class="modal">
+        <span class="close" id="close">&times</span>
+        <h1>Game Intructions</h1>
+        <ol>
+          <li>First, press the PLAY button to start playing.</li>
+          <li>Select the cards to reveal the hidden superheroes.</li>
+          <li>You should open two cards at the same time.</li>
+          <li>If the two superheroes match, both cards will remain open.</li>
+          <li>When all superheroes show up with their peers, you will have won!</li>
+        </ol>
+      </div>
+    </div>
+    <aside id="lateral1">
+      <img src="images/aside.png" alt="lateral" width="100%">
+    </aside>
+      <div id="window1">
+      <header>
+        <h1>MEMORY MATCH MARVEL UNIVERSE</h1>
+      </header>
+      <figure>
+        <img src="images/marvelcomicslogo2.png" alt="logomarvel" class="logom">
+      </figure>
+      <section>
+        <div class="ingreso">
+          <input type="text" id="nickname" placeholder="ALIAS">
+          <img src="images/icon.png" alt="icon" class="icon">
+        </div>
+        <div>
+        <button type="button" id="play">PLAY</button>
+        </div>
+      </section>
+    </div>
+    <aside id="lateral2">
+      <img src="images/aside.png" alt="lateral" width="100%">
+    </aside>
+    <div id="window2">
     <div id="container"></div>
+    </div>
     <script src="main.js" type="module"></script>
   </body>
 </html>

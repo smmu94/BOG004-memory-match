@@ -5,24 +5,36 @@
   margin: 15px;
   border-radius: 5%;
   height: 130px;
-  
+  position: relative;
+  transition: .5s ease all;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  z-index: 2;
 }
-.super .image{
-  width: 100%;
-  height: 100%;
-  border-radius: 5%;
-  object-fit: fill;
-  //display: none;
-  
-  
+
+.super.flip {
+  transform: rotateY(180deg);
 }
+
 .super .back{
   width: 100%;
   height: 100%;
   border-radius: 5%;
   object-fit: fill;
-  
+  backface-visibility: hidden;
 }
+
+ .image{
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  object-fit: fill;
+  position: absolute;
+  top: 0;
+  transform: rotateY(180deg);
+}
+
 
 
 #container {
@@ -31,15 +43,140 @@
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  width: 80%;
+  width: 60%;
+  height: 60%;
   background-image: url("images/backgroundmarvel1.jpg");
-  padding: 10px;
+  margin: auto;
 }
 
-body {
-  margin: 100px;
-  margin-right: 80px;
-  padding-left: 80px;
+body { 
   background-image: url("images/marvel1.jpg");
+  background-size:inherit;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0%;
+}
+
+#window1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 60%;
+  justify-content: space-between;
+}
+
+#window2{
+  display: none;
+}
+
+h1{
+  color: white;
+  font-family: sans-serif;
+  display: block;
+  font-size: 50px;
+  font-stretch: semi-condensed;
+  font-weight: bolder;
+
+}
+
+#play {
+  margin-top: 10px;
+  background-color: red;
+  color: yellow;
+  width: 110px;
+  height: 50px;
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-stretch: semi-condensed;
+  border-radius: 20%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   
 }
+#lateral1, #lateral2{
+  margin: 0%;
+  padding: 0%;
+}
+
+#nickname{
+  background-color: red;
+  color: white;
+  width: 80px;
+  height: 25px;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-stretch: semi-condensed;
+  text-align: center;
+}
+
+::placeholder { color: white; }
+
+.logom {
+  border: solid 3px;
+  object-fit: fill;
+  margin-bottom: 0%;
+}
+
+.ingreso {
+  display: inline-block;
+}
+
+.icon{
+width: 65px;
+}
+
+.modalWindow{
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+
+.modal{
+  width: 600px;
+  max-width: 100vh;
+  padding: 30px 50px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: white;
+  font-family: sans-serif;
+  display: inline-block;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  flex-direction: column;
+  position: absolute;
+  top: 130px;
+  right: 380px;
+}
+
+.modal h1{
+color: black;
+font-stretch: extra-condensed;
+}
+
+.close{
+  float: right;
+  color:gray;
+  font-weight: bold;
+  font-size: 30px;
+}
+.close:hover{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+li{
+  text-align: left;
+}
+
