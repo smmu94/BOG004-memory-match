@@ -99,6 +99,8 @@ h1{
 #lateral1, #lateral2{
   margin: 0%;
   padding: 0%;
+  height: 100vh;
+
 }
 
 #nickname{
