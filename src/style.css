@@ -1,10 +1,11 @@
 .super {
   width: 16%;
+  padding: 0;
   box-sizing: border-box;
   border: 2px solid;
-  margin: 15px;
+  margin: 0.4em;
   border-radius: 5%;
-  height: 130px;
+  height: 8.125em;
   position: relative;
   transition: .5s ease all;
   transform: rotateY(0deg);
@@ -51,12 +52,14 @@
 
 body { 
   background-image: url("images/marvel1.jpg");
-  background-size:inherit;
+  background-size:cover;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   margin:0%;
+  height: 100vh;
+  font-size: 1em;
 }
 
 #window1{
@@ -72,23 +75,25 @@ body {
   display: none;
 }
 
-h1{
+.largeDev{
   color: white;
   font-family: sans-serif;
   display: block;
-  font-size: 50px;
+  font-size: 3.125em;
   font-stretch: semi-condensed;
   font-weight: bolder;
-
+}
+.smallDev{
+  display: none;
 }
 
 #play {
-  margin-top: 10px;
+  margin-top: 0.625rem;
   background-color: red;
   color: yellow;
-  width: 110px;
-  height: 50px;
-  font-size: 30px;
+  width: 6.875rem;
+  height: 3.125rem;
+  font-size: 1.875em;
   font-family: sans-serif;
   font-weight: bolder;
   font-stretch: semi-condensed;
@@ -99,14 +104,32 @@ h1{
 #lateral1, #lateral2{
   margin: 0%;
   padding: 0%;
+  height: 100vh;
+  width: 15vw;
 }
+
+.lateral img {
+  height: 100vh;
+  width: 100%;
+}
+
+#lateral1 {
+  position: absolute;
+  left: 0%;
+}
+#lateral2 {
+  position: absolute;
+  right: 0%;
+}
+
+
 
 #nickname{
   background-color: red;
   color: white;
-  width: 80px;
-  height: 25px;
-  font-size: 20px;
+  width: 5em;
+  height: 1.5625em;
+  font-size: 1.25em;
   font-family: sans-serif;
   font-weight: bolder;
   font-stretch: semi-condensed;
@@ -116,7 +139,7 @@ h1{
 ::placeholder { color: white; }
 
 .logom {
-  border: solid 3px;
+  border: solid 0.188em;
   object-fit: fill;
   margin-bottom: 0%;
 }
@@ -126,11 +149,11 @@ h1{
 }
 
 .icon{
-width: 65px;
+width: 4.06em;
 }
 
 .modalWindow{
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   top: 0px;
   left: 0px;
@@ -141,9 +164,8 @@ width: 65px;
 
 
 .modal{
-  width: 600px;
-  max-width: 100vh;
-  padding: 30px 50px;
+  width: 37.5em;
+  padding: 1.875em 3.125em;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -156,8 +178,8 @@ width: 65px;
   margin: 0;
   flex-direction: column;
   position: absolute;
-  top: 130px;
-  right: 380px;
+  top: 10em;
+  right: 25%;
 }
 
 .modal h1{
@@ -169,14 +191,93 @@ font-stretch: extra-condensed;
   float: right;
   color:gray;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 1.875em;
 }
 .close:hover{
   text-decoration: none;
   cursor: pointer;
 }
 
+footer{
+  width: 100vw;
+  height: 4vh;
+  position: absolute;
+  bottom: 0%;
+  background-color: gold;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bolder;
+}
+
 li{
   text-align: left;
 }
+/*Medium devices (tablets, 768px and up)*/
+@media (max-width: 768px){
 
+}
+/*Small devices (landscape phones, 576px and up)*/
+@media (max-width: 576px){
+
+
+#lateral1, #lateral2{
+  display: none;
+}
+
+.icon{
+  width: 20%;
+  position: absolute;
+  top: 4%; left: 5%;
+  }
+
+.smallDev{
+  font-size: 2.1em;
+  color: white;
+  font-family: sans-serif;
+  display: block;
+  font-stretch: semi-condensed;
+  font-weight: bolder;
+}
+.largeDev{
+  display: none;
+}
+
+#play {
+  width: 9rem;
+  height: 3rem;
+  font-size: 2.5em;
+}
+
+#nickname {
+  width: 4rem;
+  height: 1.8rem;
+}
+
+.logom{
+  height: 20vh;
+}
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+.super {
+  width: 20%;
+  margin: 0;
+  padding: 0;
+}
+.modalWindow{
+  height: 100vh;
+  width: 100vw;
+  display: none;
+  z-index: 3;
+}
+.modal{
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left:0;
+  font-size: 1em;
+}
+
+}
