@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Match</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  
   <body>
-    <div class="modalWindow" id="modalWindow">
+    <!--Ventana de Instrucciones-->
+    <section class="modalWindow" id="modalWindow">
       <div class="modal">
         <span class="close" id="close">&times</span>
         <h1>Game Intructions</h1>
@@ -17,37 +17,56 @@
           <li>Select the cards to reveal the hidden superheroes.</li>
           <li>You should open two cards at the same time.</li>
           <li>If the two superheroes match, both cards will remain open.</li>
-          <li>When all superheroes show up with their peers, you will have won!</li>
+          <li>
+            When all superheroes show up with their peers, you will have won!
+          </li>
         </ol>
       </div>
-    </div>
-    <aside id="lateral1" class="lateral">
-      <img src="images/aside.png" alt="lateral">
+    </section>
+    <!--Barra lateral con imágenes-->
+    <aside id="sideleft" class="side">
+      <img src="images/aside.png" alt="side" />
     </aside>
-      <div id="window1">
+    <!--Ventana principal-->
+    <section id="window1">
       <header>
         <h1 class="largeDev">MEMORY MATCH MARVEL UNIVERSE</h1>
         <h1 class="smallDev">MEMORY MATCH GAME</h1>
       </header>
       <figure>
-        <img src="images/marvelcomicslogo2.png" alt="logomarvel" class="logom">
+        <img
+          src="images/marvelcomicslogo2.png"
+          alt="logomarvel"
+          class="logom"
+        />
       </figure>
       <section>
-        <div class="ingreso">
-          <input type="text" id="nickname" placeholder="ALIAS">
-          <img src="images/icon.png" alt="icon" class="icon">
+        <div class="access">
+          <input type="text" id="nickname" placeholder="ALIAS" />
+          <img src="images/icon.png" alt="icon" class="icon" />
         </div>
         <div>
-        <button type="button" id="play">PLAY</button>
+          <button type="button" id="play">PLAY</button>
         </div>
       </section>
-    </div>
-    <aside id="lateral2" class="lateral">
-      <img src="images/aside.png" alt="lateral">
+    </section>
+    <!--Barra lateral con imágenes-->
+    <aside id="sideright" class="side">
+      <img src="images/aside.png" alt="side" />
     </aside>
-    <div id="window2">
-    <div id="container"></div>
-    </div>
+    <!--Ventana de tarjetas-->
+    <section id="window2">
+      <div id="container"></div>
+    </section>
+    <!--Ventana de juego terminado-->
+    <section class="modal" id="endMessage">
+      <div class="modal">
+        <span class="close">&times</span>
+        <p>Congratulations!</p>
+        <p>You've finished</p>
+      </div>
+    </section>
+    <!--Pié de página-->
     <footer>By: Stephanie Morales & Karen Alarcón</footer>
     <script src="main.js" type="module"></script>
   </body>
