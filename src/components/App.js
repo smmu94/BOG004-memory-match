@@ -1,85 +1,104 @@
-const App = (data) => { 
-// Se define la función App y tiene como parámetro la data desde el fetch realizado en el main.js
+const createCards = (data) => {
+  // Se define la función createCards y tiene como parámetro la data desde el fetch realizado en el main.js
 
-let  domDiv =[];
+  let doubleCards = data.items.concat(data.items);
+  // Se emplea el método concat para duplicar la data sobre las tarjetas y se guardan en la variable doubleCards
 
-// Se crea un variable tipo array vacía para guarde las tarjetas
-let k = 10;
-for (let j = 0; j < 2; j++) {
-// Se crea un ciclo for externo para que duplique la data
-  for (let i = 0; i < data.items.length; i++) {
-// Se crea un ciclo for interno para que rrecorra la data según su longitud 
-    let card = document.createElement("div"); 
-    // Se crea la variable card la cual guarda los divs que contiene las tarjetas
+  let allCards = [];
+  for (let i = 0; i < doubleCards.length; i++) {
+    // Un ciclo for que recorrerá la data para crear los elementos html de las tarjetas
+    let card = document.createElement("div");
     card.innerHTML = `<div class="back">
-                        <img src="images/logoblancoback.jpg" id="logo${(i)}" class="back" alt="back">
+                        <img src="images/logoblancoback.jpg" id="logo${i}" class="back" alt="back">
                       </div>
                       <div class="image">
-                        <img src="${data.items[i].image}" id="${data.items[i].id}" class="image" alt="marvelhero">
-                      </div> `
-    // Se crea los divs que contienen el back y la cara frontal de las tarjetas                 
+                        <img src="${doubleCards[i].image}" id="${doubleCards[i].id}" class="image" alt="marvelhero">
+                      </div> `;
     card.className = "super";
-    // Se le asigna la clase "super" a las tarjetas
-    card.setAttribute("id","super" + i);
-    // Se le asigna el id a cada tarjeta de acuerdo a su posición
+    card.setAttribute("data-marvel", `${doubleCards[i].id}`);
+    // Se le asigna un atributo dataset a las tarjetas los cuales guardarán los id obtenidos de la data
+    allCards.push(card);
+    //Se le hace un push al arreglo allCards para almacenar las tarjetas creadas
+  }
+  return allCards;
+};
 
-    
-    if(j == 1){
-      // Se crea un condicional para que a las cartas duplicadas se les pueda asignar su respectivo id
-      card.setAttribute("id","super" + k);
-      k++;
+const shuffle = (allCards) => {
+  //Se declara la función shuffle para barajar las tarjetas usando el algoritmo de Fisher - Yates
+  let i = allCards.length - 1;
+  let temp = 0;
+  let randomIndex = 0;
+  while (i >= 0) {
+    randomIndex = Math.floor(Math.random() * (i + 1));
+    temp = allCards[randomIndex];
+    allCards[randomIndex] = allCards[i];
+    allCards[i] = temp;
+    i--;
+  }
+};
+
+let count = -1;
+let firstCard;
+let secondCard;
+let lockBox = false; // lockBox se empleará para evitar seleccionar mas de dos tarjetas
+const flipCards = (card) => {
+  // Se declara la función flipCards para que a cada dos tarjetas se les añada la clase "flip",
+  // es decir se voltean, se comparan y se llaman las funciones matchCards() y noMatchCards();
+
+  if (lockBox) return;
+  else// cuando lockBox sea true no se ejecutará la función
+  if (count < 2) {
+    count++;
+    card.classList.add("flip");
+    if (count == 0) {
+      firstCard = card;
+    } else {
+      secondCard = card;
+      firstCard.dataset.marvel == secondCard.dataset.marvel
+        ? // Se emplea un operador ternario, si la dataset de ambas cards es igual
+          //se llama la funcion matchCards. Si no son iguales se llama "noMatchCards"
+          matchCards()
+        : noMatchCards();
     }
-  
-    domDiv.push(card);
-    //Se le hace un push al arreglo domDiv para almacenar las tarjetas 
+    return [card,count];
   }
 }
 
-//Se llaman las funciones shuffle, createCards y flipCards
-shuffle(domDiv);
-createCards(domDiv);
-flipCards(domDiv);
-}
+let cardFlip = 0;
+const matchCards = () => {
+  // Se declara la función matchCards, en este caso ya se sabe que las tarjetas son iguales
+  // Se les remueve la acción click para queden destapadas
+  console.log("match!");
 
- 
-const shuffle = (domDiv) =>{
-//Se define la función shuffle para barajar las tarjetas usando el algoritmo de Fisher - Yates    
-     let i = domDiv.length - 1;
-    // Se declara i la cual representa la posición final del array domDiv 
-     let temp = 0;
-     // Se declara una variable temporal en cero
-     let randomIndex = 0; 
-     // Se declara en cero una variable que guardará el índice aleatorio
-     while (i >= 0) {
-    // Se emplea un ciclo while, que se ejecutará mientras la posición sea mayor o igual a cero
-       randomIndex = Math.floor(Math.random() * (i + 1));
-       //Se usa el metódo random para lanzar un número aleatorio dentro del rango del array y se guarda en randomIndex
-       temp = domDiv[randomIndex];
-       //La variable temporal guarda el valor de la posición randomIndex
-       domDiv[randomIndex] = domDiv[i];
-       //El valor ubicado en la posición i se guarda en la posición aletoria
-       domDiv[i] = temp;
-       //El valor guardado en la variable temporal se asigna a la posición i;
-       i--;
-       //Se usa un contador que inverso hasta llegar a la primera posicion del domDiv
-     }
-}
- 
+  count = -1;
+  lockBox = false; //se vuelve a hacer false el lockBox para poder seleccionar nuevas tarjetas de a dos
+  cardFlip++;
+  endMessage(cardFlip); //Se llama a la funcion endMessage y se le envía el número de matchs totales
+};
 
-const createCards = (domDiv) =>{
-//Se define la función createCards para enviar las tarjetas al html
-    for (let i = 0; i < domDiv.length; i++) {
-     document.getElementById("container").appendChild(domDiv[i]); 
-    }
-} 
+const noMatchCards = () => {
+  // Se declara la función noMatchCards, en la cual se remueve la clase "flip", es decir
+  // las tarjetas regresan a su posición inicial
+  lockBox = true;
+  console.log("its not a match");
+  setTimeout(() => {
+    //Un setTimeout para dejar que se visualicen las tarjetas por un tiempo
+    // antes de que vuelvan a girar
+    firstCard.classList.remove("flip");
+    secondCard.classList.remove("flip");
+    lockBox = false;
+  }, 1300);
+  count = -1;
+};
 
-const flipCards = (domDiv) =>{
-//Se define la función flipCards para girar las tarjetas
-  for (let i = 0; i < domDiv.length; i++) {
-    document.getElementById(`super${(i)}`).addEventListener("click",() => {
-    document.getElementById(`super${(i)}`).classList.toggle("flip")});
-   }
-} 
+const endMessage = (cardFlip) => {
+  // Se declara la función endMessage la cual recibe el número de matchs y si es igual al total
+  // de parejas se emite un mensaje ganador
+  if (cardFlip == 10) {
+    document.getElementById("endMessage").style.display = "block";
+  }
+};
 
-export default App;
 
+
+export { createCards, shuffle, flipCards, endMessage };

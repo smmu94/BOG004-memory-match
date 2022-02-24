@@ -1,68 +1,43 @@
-.super {
-  width: 16%;
-  padding: 0;
-  box-sizing: border-box;
-  border: 2px solid;
-  margin: 0.4em;
-  border-radius: 5%;
-  height: 8.125em;
-  position: relative;
-  transition: .5s ease all;
-  transform: rotateY(0deg);
-  transform-style: preserve-3d;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.super.flip {
-  transform: rotateY(180deg);
-}
-
-.super .back{
-  width: 100%;
-  height: 100%;
-  border-radius: 5%;
-  object-fit: fill;
-  backface-visibility: hidden;
-}
-
- .image{
-  width: 100%;
-  height: 100%;
-  border-radius: 5%;
-  object-fit: fill;
-  position: absolute;
-  top: 0;
-  transform: rotateY(180deg);
-}
-
-
-
-#container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-  width: 60%;
-  height: 60%;
-  background-image: url("images/backgroundmarvel1.jpg");
-  margin: auto;
-}
-
-body { 
+body {
   background-image: url("images/marvel1.jpg");
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:0%;
+  margin: 0%;
   height: 100vh;
   font-size: 1em;
 }
 
-#window1{
+/*Estilo de la ventana 1*/
+
+#side1,
+#side2 {
+  /*Dimensiones del aside*/
+  margin: 0%;
+  padding: 0%;
+  height: 100vh;
+  width: 15vw;
+}
+.side img {
+  /*Tamaño de la imagen*/
+  height: 100vh;
+  width: 100%;
+}
+#sideleft {
+  /*Posicionamiento del aside a la izquierda*/
+  position: absolute;
+  left: 0%;
+}
+#sideright {
+  /*Posicionamiento del aside a la derecha*/
+  position: absolute;
+  right: 0%;
+}
+
+#window1 {
+  /* Posicionamiento y visualización de la ventana 1 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,11 +46,8 @@ body {
   justify-content: space-between;
 }
 
-#window2{
-  display: none;
-}
-
-.largeDev{
+.largeDev {
+  /* Estilo del título para responsive desktop*/
   color: white;
   font-family: sans-serif;
   display: block;
@@ -83,48 +55,23 @@ body {
   font-stretch: semi-condensed;
   font-weight: bolder;
 }
-.smallDev{
+.smallDev {
   display: none;
 }
 
-#play {
-  margin-top: 0.625rem;
-  background-color: red;
-  color: yellow;
-  width: 6.875rem;
-  height: 3.125rem;
-  font-size: 1.875em;
-  font-family: sans-serif;
-  font-weight: bolder;
-  font-stretch: semi-condensed;
-  border-radius: 20%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  
-}
-#lateral1, #lateral2{
-  margin: 0%;
-  padding: 0%;
-  height: 100vh;
-  width: 15vw;
+.logom {
+  /*Estilo del logo de marvel*/
+  border: solid 0.188em;
+  object-fit: fill;
+  margin-bottom: 0%;
 }
 
-.lateral img {
-  height: 100vh;
-  width: 100%;
+.access {
+  /* Ordenar items del alias e ícono*/
+  display: inline-block;
 }
-
-#lateral1 {
-  position: absolute;
-  left: 0%;
-}
-#lateral2 {
-  position: absolute;
-  right: 0%;
-}
-
-
-
-#nickname{
+#nickname {
+  /*Estilo del input del alias*/
   background-color: red;
   color: white;
   width: 5em;
@@ -135,24 +82,17 @@ body {
   font-stretch: semi-condensed;
   text-align: center;
 }
-
-::placeholder { color: white; }
-
-.logom {
-  border: solid 0.188em;
-  object-fit: fill;
-  margin-bottom: 0%;
+::placeholder {
+  color: white;
+}
+.icon {
+  /*Tamaño del ícono '?'*/
+  width: 4.06em;
 }
 
-.ingreso {
-  display: inline-block;
-}
-
-.icon{
-width: 4.06em;
-}
-
-.modalWindow{
+.modalWindow,
+#endMessage {
+  /*Estilos del modal con opacidad*/
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   top: 0px;
@@ -160,10 +100,10 @@ width: 4.06em;
   height: 100%;
   width: 100%;
   display: none;
+  z-index: 3;
 }
-
-
-.modal{
+.modal {
+  /*Estilos del modal*/
   width: 37.5em;
   padding: 1.875em 3.125em;
   border-radius: 5px;
@@ -181,24 +121,106 @@ width: 4.06em;
   top: 10em;
   right: 25%;
 }
-
-.modal h1{
-color: black;
-font-stretch: extra-condensed;
+.modal h1 {
+  /*Estilo del título del modal*/
+  color: black;
+  font-stretch: extra-condensed;
 }
-
-.close{
+li {
+  /*Alinear listado de instrucciones*/
+  text-align: left;
+}
+.close {
+  /*Estilo ícono cerrar 'x'*/
   float: right;
-  color:gray;
+  color: gray;
   font-weight: bold;
   font-size: 1.875em;
 }
-.close:hover{
+.close:hover {
   text-decoration: none;
   cursor: pointer;
 }
 
-footer{
+#play {
+  /*Estilo del botón Play*/
+  margin-top: 0.625rem;
+  background-color: red;
+  color: yellow;
+  width: 6.875rem;
+  height: 3.125rem;
+  font-size: 1.875em;
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-stretch: semi-condensed;
+  border-radius: 20%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/*Estilo de la ventana 2*/
+
+#window2 {
+  display: none;
+}
+
+#container {
+  /*Tablero de tarjetas*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  width: 60%;
+  height: 60%;
+  background-image: url("images/backgroundmarvel1.jpg");
+  margin: auto;
+}
+
+.super {
+  /*Estilo de tarjeta*/
+  width: 16%;
+  padding: 0;
+  box-sizing: border-box;
+  border: 2px solid;
+  margin: 0.4em;
+  border-radius: 5%;
+  height: 8.125em;
+  position: relative;
+  transition: 0.5s ease all;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.super.flip {
+  /*Rotación de la tarjeta*/
+  transform: rotateY(180deg);
+}
+
+.super .back {
+  /*Estilo de la cara posterior con el logo*/
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  object-fit: fill;
+  backface-visibility: hidden;
+}
+
+.super .image {
+  /*Estilo de la cara de los superhéroes*/
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  object-fit: fill;
+  position: absolute;
+  top: 0;
+  transform: rotateY(180deg);
+}
+
+/*Estilo del footer*/
+
+footer {
   width: 100vw;
   height: 4vh;
   position: absolute;
@@ -209,75 +231,71 @@ footer{
   font-weight: bolder;
 }
 
-li{
-  text-align: left;
-}
 /*Medium devices (tablets, 768px and up)*/
-@media (max-width: 768px){
-
+@media (max-width: 768px) {
 }
 /*Small devices (landscape phones, 576px and up)*/
-@media (max-width: 576px){
-
-
-#lateral1, #lateral2{
-  display: none;
-}
-
-.icon{
-  width: 20%;
-  position: absolute;
-  top: 4%; left: 5%;
+@media (max-width: 576px) {
+  #sideleft,
+  #sideright {
+    display: none;
   }
 
-.smallDev{
-  font-size: 2.1em;
-  color: white;
-  font-family: sans-serif;
-  display: block;
-  font-stretch: semi-condensed;
-  font-weight: bolder;
-}
-.largeDev{
-  display: none;
-}
+  .smallDev {
+    font-size: 2.1em;
+    color: white;
+    font-family: sans-serif;
+    display: block;
+    font-stretch: semi-condensed;
+    font-weight: bolder;
+  }
+  .largeDev {
+    display: none;
+  }
 
-#play {
-  width: 9rem;
-  height: 3rem;
-  font-size: 2.5em;
-}
+  .logom {
+    height: 20vh;
+  }
 
-#nickname {
-  width: 4rem;
-  height: 1.8rem;
-}
+  #nickname {
+    width: 4rem;
+    height: 1.8rem;
+  }
+  .icon {
+    width: 20%;
+    position: absolute;
+    top: 4%;
+    left: 5%;
+  }
 
-.logom{
-  height: 20vh;
-}
-#container {
-  width: 100vw;
-  height: 100vh;
-}
-.super {
-  width: 20%;
-  margin: 0;
-  padding: 0;
-}
-.modalWindow{
-  height: 100vh;
-  width: 100vw;
-  display: none;
-  z-index: 3;
-}
-.modal{
-  width: 100%;
-  height: 50%;
-  position: absolute;
-  top: 25%;
-  left:0;
-  font-size: 1em;
-}
+  .modalWindow {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    z-index: 3;
+  }
+  .modal {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    font-size: 1em;
+  }
 
+  #play {
+    width: 9rem;
+    height: 3rem;
+    font-size: 2.5em;
+  }
+
+  #container {
+    width: 100vw;
+    height: 100vh;
+  }
+  .super {
+    width: 20%;
+    margin: 0;
+    padding: 0;
+  }
 }

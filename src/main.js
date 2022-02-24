@@ -1,31 +1,39 @@
-import App from "./components/App.js";
-
+import { createCards, shuffle, flipCards } from "./components/App.js";
 
 fetch("../data/marvel/marvel.json")
-// Interfaz que permite traer la data de marvel.json de acuerdo a la ruta
+  // Interfaz que permite traer la data de marvel.json de acuerdo a la ruta
   .then((resp) => resp.json())
   // Promesa que da respuesta al estado del callback
-  .then((data) => App(data)) 
-  // Promesa que trae la data y la envía al App
+  .then((data) => {
+    // Promesa que trae la data y la envía al createCards
+    let allCards = createCards(data);
+    shuffle(allCards);
+    // Se declara la variable allCards que guarda el return de la función createCards
+    // y se llama la función shuffle para barajarlas
+    allCards.forEach((card) =>
+      document.getElementById("container").appendChild(card)
+    );
+    allCards.forEach((card) =>
+      card.addEventListener("click", () => flipCards(card))
+    );
+    // Para cada card, al hacer click se llama la función flipCards
+  })
   .catch((err) => console.error(err));
-  // Se ejecuta en caso de que ocurra alguna falla en las promesas then
+// Se ejecuta en caso de que ocurra alguna falla en las promesas then
 
-
- document.querySelector("#play").addEventListener("click",()=>
- {document.getElementById("window1").style.display = "none";
- document.getElementById("lateral1").style.display = "none";
- document.getElementById("lateral2").style.display = "none";
+// Al hacer click en el botón Play se oculta la ventana 1 y se muestra la ventana 2
+document.querySelector("#play").addEventListener("click", () => {
+  document.getElementById("window1").style.display = "none";
+  document.getElementById("sideleft").style.display = "none";
+  document.getElementById("sideright").style.display = "none";
   document.getElementById("window2").style.display = "block";
-} )
+});
 
-document.querySelector(".close").addEventListener("click",()=> 
-  {
-  document.querySelector(".modalWindow").style.display = "none";
-})
-
-document.querySelector(".icon").addEventListener("click",()=> 
-  {
+// Al hacer click en el ícono '?' se muestra la venta de instrucciones
+document.querySelector(".icon").addEventListener("click", () => {
   document.querySelector(".modalWindow").style.display = "block";
-})
-
-
+});
+// Al hacer click en el ícono 'x' se cierra la venta de instrucciones
+document.querySelector(".close").addEventListener("click", () => {
+  document.querySelector(".modalWindow").style.display = "none";
+});
