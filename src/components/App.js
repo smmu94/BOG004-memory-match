@@ -45,10 +45,8 @@ const flipCards = (card) => {
   // Se declara la función flipCards para que a cada dos tarjetas se les añada la clase "flip",
   // es decir se voltean, se comparan y se llaman las funciones matchCards() y noMatchCards();
 
-  if (lockBox == true) {
-    // cuando lockBox sea true no se ejecutará la función
-    card.addEventListener("click", (card.className = "super"));
-  }
+  if (lockBox) return;
+  else// cuando lockBox sea true no se ejecutará la función
   if (count < 2) {
     count++;
     card.classList.add("flip");
@@ -62,15 +60,16 @@ const flipCards = (card) => {
           matchCards()
         : noMatchCards();
     }
-    return card;
+    return [card,count];
   }
-};
+}
 
 let cardFlip = 0;
 const matchCards = () => {
   // Se declara la función matchCards, en este caso ya se sabe que las tarjetas son iguales
   // Se les remueve la acción click para queden destapadas
   console.log("match!");
+
   count = -1;
   lockBox = false; //se vuelve a hacer false el lockBox para poder seleccionar nuevas tarjetas de a dos
   cardFlip++;
@@ -99,5 +98,7 @@ const endMessage = (cardFlip) => {
     document.getElementById("endMessage").style.display = "block";
   }
 };
+
+
 
 export { createCards, shuffle, flipCards, endMessage };

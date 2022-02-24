@@ -78,13 +78,25 @@ describe('createCards', () => {
         expect(typeof flipCards).toBe('function');
       });
     
-      it('la card debería voltearse', () => {
+      it('firstCard debería voltearse', () => {
        let cards = createCards(dataTest);
+       let count;
         cards.forEach(card =>{
           flipCards(card)
+          if(count == 0)
           expect(card.className == "super flip").toBe(true);
         })
       });
+
+      it('secondCard debería voltearse', () => {
+        let cards = createCards(dataTest);
+        let count;
+         cards.forEach(card =>{
+           flipCards(card)
+           if(count == 1)
+           expect(card.className == "super flip").toBe(true);
+         })
+       });
 
 
     
