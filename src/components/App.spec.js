@@ -63,7 +63,7 @@ describe('createCards', () => {
       
       it('el id="hulk" no debe estar en la segunda posición', () => {
           shuffle(dataTest.items);
-          expect(dataTest.items[1].id != "hulk");
+          expect(dataTest.items[1].id).not.toEqual("hulk");
         });
       
       it('el id="wolverine" no debe estar en la última posición', () => {
@@ -84,7 +84,7 @@ describe('createCards', () => {
         cards.forEach(card =>{
           flipCards(card)
           if(count == 0)
-          expect(card.className == "super flip").toBe(true);
+          expect(card.className).toEqual("super flip");
         })
       });
 

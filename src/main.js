@@ -10,14 +10,26 @@ fetch("../data/marvel/marvel.json")
     shuffle(allCards);
     // Se declara la variable allCards que guarda el return de la función createCards
     // y se llama la función shuffle para barajarlas
-    allCards.forEach((card) =>
+        allCards.forEach((card) =>
       document.getElementById("container").appendChild(card)
     );
+    let cardFlip = 0;
+    let lessLives = 5;
+    
+    // const  actualizarContadores = () =>{
+    //   cardFlip++;
+    //     lessLives--;
+    // } 
+    
     allCards.forEach((card) =>
-      card.addEventListener("click", () => flipCards(card))
-    );
+      card.addEventListener("click", () =>{  flipCards(card,cardFlip,lessLives)
+       
+      })
+  );
     // Para cada card, al hacer click se llama la función flipCards
+    
   })
+
   .catch((err) => console.error(err));
 // Se ejecuta en caso de que ocurra alguna falla en las promesas then
 
@@ -27,7 +39,16 @@ document.querySelector("#play").addEventListener("click", () => {
   document.getElementById("sideleft").style.display = "none";
   document.getElementById("sideright").style.display = "none";
   document.getElementById("window2").style.display = "block";
+  
+  let alias = document.getElementById("nickname").value;
+ alias.toString();
+ console.log(alias);
+document.querySelector(".alias").innerHTML= `${alias}!`.toUpperCase();
 });
+
+
+
+
 
 // Al hacer click en el ícono '?' se muestra la venta de instrucciones
 document.querySelector(".icon").addEventListener("click", () => {
@@ -37,3 +58,8 @@ document.querySelector(".icon").addEventListener("click", () => {
 document.querySelector(".close").addEventListener("click", () => {
   document.querySelector(".modalWindow").style.display = "none";
 });
+
+
+
+
+
