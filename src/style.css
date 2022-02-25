@@ -163,6 +163,26 @@ li {
   display: none;
 }
 
+.container-player{
+  text-align: center;
+}
+.container-lifes img{
+  margin: 3px;
+  width: 3.75em;
+  float: center;
+}
+
+.alias {
+  font-size: 2.5em;
+  font-weight: bold;
+  
+  color: cornsilk;
+  margin-top: 3.125em; 
+  
+
+}
+
+
 #container {
   /*Tablero de tarjetas*/
   display: flex;
@@ -191,7 +211,18 @@ li {
   transform-style: preserve-3d;
   cursor: pointer;
   z-index: 3;
+  animation: iniciar 2s;
+ 
 }
+
+@keyframes iniciar {
+  20%, 90% {
+    transform: rotateY(180deg);
+  }
+  0%,100% {
+    transform: rotatey(0deg);
+  }
+  }
 
 .super.flip {
   /*Rotación de la tarjeta*/
@@ -215,8 +246,14 @@ li {
   object-fit: fill;
   position: absolute;
   top: 0;
+  z-index: -1;
   transform: rotateY(180deg);
 }
+
+.alias {
+
+}
+
 
 /*Estilo del footer*/
 
@@ -233,7 +270,86 @@ footer {
 
 /*Medium devices (tablets, 768px and up)*/
 @media (max-width: 768px) {
+  #sideleft,
+  #sideright {
+    display: none;
+  }
+body {
+  background-image: url("images/marvel1.jpg");
+  background-repeat: no-repeat;
+  display: flex;
 }
+
+
+.icon {
+  width: 13%;
+  position: absolute;
+  top: 4%;
+  left: 5%;
+}
+
+.container-player{
+  display: inline-block;
+  position: absolute;
+}
+
+.largeDev {
+  color: white;
+  font-family: sans-serif;
+  position: absolute;
+  top: 14%;
+  left: 5%;
+  font-size: 2.8em;
+  font-stretch: semi-condensed;
+  font-weight: bolder;
+}
+.smallDev{
+  display: none;
+}
+
+#play {
+  width: 15rem;
+  height: 6rem;
+  font-size: 4em;
+}
+
+#nickname {
+  width: 8em;
+  height: 2.0rem;
+}
+
+.logom {
+  height: 18vh;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+.super {
+  width: 20%;
+  margin: 0%;
+  padding: 0;
+  height: 12%;
+}
+
+.modalWindow {
+  height: 100vh;
+  width: 100vw;
+  display: none;
+  z-index: 3;
+}
+.modal {
+  width: 90%;
+  height: 45%;
+  position: absolute;
+  top: 25%;
+  left: 0;
+  font-size: 1em;
+}
+}
+
+
 /*Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) {
   #sideleft,
@@ -297,5 +413,14 @@ footer {
     width: 20%;
     margin: 0;
     padding: 0;
+  }
+
+.container-lifes img{
+   width: 3.125em;
+
+  }
+
+  .alias {
+    font-size: 1.875em;
   }
 }

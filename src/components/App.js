@@ -1,3 +1,5 @@
+//import { actualizarContadores} from "../main.js";
+
 const createCards = (data) => {
   // Se define la función createCards y tiene como parámetro la data desde el fetch realizado en el main.js
 
@@ -37,16 +39,18 @@ const shuffle = (allCards) => {
   }
 };
 
+let match;
+let noMatch;
 let count = -1;
 let firstCard;
 let secondCard;
 let lockBox = false; // lockBox se empleará para evitar seleccionar mas de dos tarjetas
-const flipCards = (card) => {
+const flipCards = (card,cardFlip,lessLives) => {
   // Se declara la función flipCards para que a cada dos tarjetas se les añada la clase "flip",
   // es decir se voltean, se comparan y se llaman las funciones matchCards() y noMatchCards();
 
   if (lockBox) return;
-  else// cuando lockBox sea true no se ejecutará la función
+  // cuando lockBox sea true no se ejecutará la función
   if (count < 2) {
     count++;
     card.classList.add("flip");
@@ -54,18 +58,26 @@ const flipCards = (card) => {
       firstCard = card;
     } else {
       secondCard = card;
-      firstCard.dataset.marvel == secondCard.dataset.marvel
-        ? // Se emplea un operador ternario, si la dataset de ambas cards es igual
+     if (firstCard.dataset.marvel == secondCard.dataset.marvel)
+         // Se emplea un operador ternario, si la dataset de ambas cards es igual
           //se llama la funcion matchCards. Si no son iguales se llama "noMatchCards"
-          matchCards()
-        : noMatchCards();
+     match = matchCards(cardFlip)
+    else {noMatch = noMatchCards(lessLives)
+  
     }
-    return [card,count];
+    
+   endMessage(match,noMatch); //Se llama a la funcion endMessage y se le envía el número de matchs totales
+   
+    //actualizarContadores();
+   
+   
   }
 }
+return  [card,match,noMatch];
+}
 
-let cardFlip = 0;
-const matchCards = () => {
+
+const matchCards = (cardFlip) => {
   // Se declara la función matchCards, en este caso ya se sabe que las tarjetas son iguales
   // Se les remueve la acción click para queden destapadas
   console.log("match!");
@@ -73,10 +85,12 @@ const matchCards = () => {
   count = -1;
   lockBox = false; //se vuelve a hacer false el lockBox para poder seleccionar nuevas tarjetas de a dos
   cardFlip++;
-  endMessage(cardFlip); //Se llama a la funcion endMessage y se le envía el número de matchs totales
+  return cardFlip;
+  
 };
 
-const noMatchCards = () => {
+
+const noMatchCards = (lessLives) => {
   // Se declara la función noMatchCards, en la cual se remueve la clase "flip", es decir
   // las tarjetas regresan a su posición inicial
   lockBox = true;
@@ -89,16 +103,30 @@ const noMatchCards = () => {
     lockBox = false;
   }, 1300);
   count = -1;
+  lessLives--;
+  
+  return lessLives;
 };
 
-const endMessage = (cardFlip) => {
+
+
+
+const endMessage = (match, noMatch) => {
   // Se declara la función endMessage la cual recibe el número de matchs y si es igual al total
   // de parejas se emite un mensaje ganador
-  if (cardFlip == 10) {
+  if (match == 10) {
+    document.querySelector("#finish").innerHTML= `You've Finished the game with ${noMatch} lives`;
     document.getElementById("endMessage").style.display = "block";
   }
+  else if (noMatch==0) {
+    document.querySelector("#finish").innerHTML= `Game over you lost the lives`;
+    document.getElementById("endMessage").style.display = "block";
+  }
+ 
 };
 
 
 
-export { createCards, shuffle, flipCards, endMessage };
+
+
+export { createCards, shuffle, flipCards,endMessage };
