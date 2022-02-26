@@ -1,4 +1,4 @@
-//import { actualizarContadores} from "../main.js";
+
 
 const createCards = (data) => {
   // Se define la función createCards y tiene como parámetro la data desde el fetch realizado en el main.js
@@ -39,16 +39,13 @@ const shuffle = (allCards) => {
   }
 };
 
-let match;
-let noMatch;
 let count = -1;
 let firstCard;
 let secondCard;
 let lockBox = false; // lockBox se empleará para evitar seleccionar mas de dos tarjetas
-const flipCards = (card,cardFlip,lessLives) => {
+const flipCards = (card) => {
   // Se declara la función flipCards para que a cada dos tarjetas se les añada la clase "flip",
-  // es decir se voltean, se comparan y se llaman las funciones matchCards() y noMatchCards();
-
+ // Se retornan las tarjetas seleccionadas
   if (lockBox) return;
   // cuando lockBox sea true no se ejecutará la función
   if (count < 2) {
@@ -58,39 +55,20 @@ const flipCards = (card,cardFlip,lessLives) => {
       firstCard = card;
     } else {
       secondCard = card;
-     if (firstCard.dataset.marvel == secondCard.dataset.marvel)
-         // Se emplea un operador ternario, si la dataset de ambas cards es igual
-          //se llama la funcion matchCards. Si no son iguales se llama "noMatchCards"
-     match = matchCards(cardFlip)
-    else {noMatch = noMatchCards(lessLives)
-  
+      return [firstCard, secondCard];
     }
-    
-   endMessage(match,noMatch); //Se llama a la funcion endMessage y se le envía el número de matchs totales
-   
-    //actualizarContadores();
-   
-   
   }
-}
-return  [card,match,noMatch];
-}
+};
 
-
-const matchCards = (cardFlip) => {
+const matchCards = () => {
   // Se declara la función matchCards, en este caso ya se sabe que las tarjetas son iguales
   // Se les remueve la acción click para queden destapadas
   console.log("match!");
-
   count = -1;
   lockBox = false; //se vuelve a hacer false el lockBox para poder seleccionar nuevas tarjetas de a dos
-  cardFlip++;
-  return cardFlip;
-  
 };
 
-
-const noMatchCards = (lessLives) => {
+const noMatchCards = () => {
   // Se declara la función noMatchCards, en la cual se remueve la clase "flip", es decir
   // las tarjetas regresan a su posición inicial
   lockBox = true;
@@ -103,30 +81,33 @@ const noMatchCards = (lessLives) => {
     lockBox = false;
   }, 1300);
   count = -1;
-  lessLives--;
-  
-  return lessLives;
 };
 
+const endMessage = (cardFlip, lessLives) => {
+  //Se declara la función endMessage la cual recibe el número de matchs y no matchs 
+  //Emite un mensaje dependiendo si ganó o perdió
 
+  if (cardFlip == 10 && lessLives > 0) {
+    let finished = document.querySelector("#finished");
+    finished.innerHTML = `Congrats!!! You've Finished the game with ${lessLives} lives`;
+    const imageEndGame = document.createElement("img");
+    imageEndGame.setAttribute("src","images/wingame.jpg");
+    imageEndGame.className = "imgwin";
+    document.querySelector(".endGame").appendChild(imageEndGame);
+    cardFlip = 0; lessLives=10;
+    document.getElementById("endMessage").style.display = "block";
 
-
-const endMessage = (match, noMatch) => {
-  // Se declara la función endMessage la cual recibe el número de matchs y si es igual al total
-  // de parejas se emite un mensaje ganador
-  if (match == 10) {
-    document.querySelector("#finish").innerHTML= `You've Finished the game with ${noMatch} lives`;
+  } else if (lessLives == 0) {
+    let finished = document.querySelector("#finished");
+    finished.innerHTML = `Game over! You lost all the lives`;
+    const imageEndGame = document.createElement("img");
+    imageEndGame.setAttribute("src","images/lostgame.jpg");
+    imageEndGame.className = "imglose";
+    document.querySelector(".endGame").appendChild(imageEndGame);
+    cardFlip = 0; lessLives=10;
     document.getElementById("endMessage").style.display = "block";
   }
-  else if (noMatch==0) {
-    document.querySelector("#finish").innerHTML= `Game over you lost the lives`;
-    document.getElementById("endMessage").style.display = "block";
-  }
- 
+  return [cardFlip,lessLives];
 };
 
-
-
-
-
-export { createCards, shuffle, flipCards,endMessage };
+export { createCards, shuffle, flipCards, matchCards,noMatchCards,endMessage };

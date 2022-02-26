@@ -12,8 +12,8 @@ body {
 
 /*Estilo de la ventana 1*/
 
-#side1,
-#side2 {
+#sideleft,
+#sideright {
   /*Dimensiones del aside*/
   margin: 0%;
   padding: 0%;
@@ -102,6 +102,9 @@ body {
   display: none;
   z-index: 3;
 }
+#endMessage .modal {
+background-color: #fdfd96;
+}
 .modal {
   /*Estilos del modal*/
   width: 37.5em;
@@ -142,7 +145,7 @@ li {
   cursor: pointer;
 }
 
-#play {
+.play, .play_again, .exit {
   /*Estilo del botón Play*/
   margin-top: 0.625rem;
   background-color: red;
@@ -156,7 +159,9 @@ li {
   border-radius: 20%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
+#play_again, #exit{
+  font-size: 1em;
+}
 /*Estilo de la ventana 2*/
 
 #window2 {
@@ -164,24 +169,29 @@ li {
 }
 
 .container-player{
-  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
-.container-lifes img{
-  margin: 3px;
-  width: 3.75em;
-  float: center;
+.container-lives img{
+ width: 2.4em;
 }
 
 .alias {
-  font-size: 2.5em;
+  font-size: 2.4em;
   font-weight: bold;
-  
   color: cornsilk;
-  margin-top: 3.125em; 
-  
-
 }
 
+#finished{
+  font-size: 1.8em;
+  font-family: serif;
+  font-weight: bolder;
+}
+.imgwin, .imglose{
+  width: 50%;
+  border: solid 0.188em;
+}
 
 #container {
   /*Tablero de tarjetas*/
@@ -250,10 +260,6 @@ li {
   transform: rotateY(180deg);
 }
 
-.alias {
-
-}
-
 
 /*Estilo del footer*/
 
@@ -274,6 +280,8 @@ footer {
   #sideright {
     display: none;
   }
+
+
 body {
   background-image: url("images/marvel1.jpg");
   background-repeat: no-repeat;
@@ -307,7 +315,7 @@ body {
   display: none;
 }
 
-#play {
+.play {
   width: 15rem;
   height: 6rem;
   font-size: 4em;
@@ -320,6 +328,12 @@ body {
 
 .logom {
   height: 18vh;
+}
+.container-player{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 30%;
 }
 
 #container {
@@ -340,12 +354,12 @@ body {
   z-index: 3;
 }
 .modal {
-  width: 90%;
+  width: 80%;
   height: 45%;
   position: absolute;
+  right: 10%;
   top: 25%;
-  left: 0;
-  font-size: 1em;
+  font-size: 1.5em;
 }
 }
 
@@ -384,7 +398,7 @@ body {
     left: 5%;
   }
 
-  .modalWindow {
+  .modalWindow, #endMessage {
     height: 100vh;
     width: 100vw;
     display: none;
@@ -393,16 +407,40 @@ body {
   .modal {
     width: 100%;
     height: 50%;
-    position: absolute;
+    position: fixed;
     top: 25%;
     left: 0;
-    font-size: 1em;
+    font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+  }
+  .modal #close{
+   position:absolute ;
+   right: 10%;
+   top: 10%;
   }
 
-  #play {
+  .play {
     width: 9rem;
     height: 3rem;
     font-size: 2.5em;
+  }
+  
+  #finished{
+    font-size: 100%;
+    font-family: serif;
+    font-weight: bolder;
+  }
+  .imgwin, .imglose{
+    width: 40%;
+    border: solid 0.188em;
+  }
+
+   #play_again, #exit {
+    width:20%;
+    height: 10%;
+    font-size: 0.7em;
   }
 
   #container {
@@ -415,12 +453,19 @@ body {
     padding: 0;
   }
 
-.container-lifes img{
-   width: 3.125em;
+.container-player{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 30%;
+}
+.container-lives img{
+ width: 1.5em;
+}
 
-  }
-
-  .alias {
-    font-size: 1.875em;
-  }
+.alias {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: cornsilk;
+}
 }

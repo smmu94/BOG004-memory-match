@@ -46,7 +46,7 @@
           <img src="images/icon.png" alt="icon" class="icon" />
         </div>
         <div>
-          <button type="button" id="play">PLAY</button>
+          <button type="button" class="play">PLAY</button>
         </div>
       </section>
     </section>
@@ -57,22 +57,32 @@
     <!--Ventana de tarjetas-->
     <section id="window2">
       <div class="container-player">
+        <!--Contenedor del alias y las vidas del jugador-->
         <div class="alias"></div>
-        <div class="container-lifes">
-          <img src="images/logovidas.png" alt="face" />
-          <img src="images/logovidas.png" alt="face" />
-          <img src="images/logovidas.png" alt="face" />
-          <img src="images/logovidas.png" alt="face" />
-          <img src="images/logovidas.png" alt="face" />
+        <div class="container-lives">
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
+          <img src="images/logovidas.png" alt="face" class="live"/>
         </div>
-      </div>      
-    <div id="container"></div>
+      </div>
+      <div id="container"></div>
+      <!--Contenedor en el cual se mostrarán las tarjetas-->
     </section>
     <!--Ventana de juego terminado-->
     <section class="modal" id="endMessage">
-      <div class="modal" >
-        <p id="finish"></p>
-        </div>
+      <div class="modal">
+        <p id="finished"></p>
+        <div class="endGame"></div>
+        <button id="play_again" class="play_again">PLAY AGAIN</button>
+        <button id="exit" class="exit">EXIT</button>
+      </div>
     </section>
     <!--Pié de página-->
     <footer>By: Stephanie Morales & Karen Alarcón</footer>

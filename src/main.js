@@ -1,4 +1,4 @@
-import { createCards, shuffle, flipCards } from "./components/App.js";
+import { createCards, shuffle, flipCards,matchCards,noMatchCards, endMessage } from "./components/App.js";
 
 fetch("../data/marvel/marvel.json")
   // Interfaz que permite traer la data de marvel.json de acuerdo a la ruta
@@ -13,28 +13,39 @@ fetch("../data/marvel/marvel.json")
         allCards.forEach((card) =>
       document.getElementById("container").appendChild(card)
     );
+    
+    let lives = 0;
     let cardFlip = 0;
-    let lessLives = 5;
+    let lessLives = 10;
+    allCards.forEach((card) => {
+      card.addEventListener("click", () =>{ 
+        let firstAndSecond = flipCards(card);
+        if(firstAndSecond!=undefined){
+        if (firstAndSecond[0].dataset.marvel == firstAndSecond[1].dataset.marvel) {
+        cardFlip++;
+        //lessLives = lessLives - 0;
+        matchCards();
+      } else {
+        if(lessLives>=0)
+        {
+          lessLives--;
+          lives = document.querySelector(".container-lives");
+          lives.removeChild(lives.firstElementChild);
+        }
+        //cardFlip = cardFlip + 0;
+        noMatchCards();
+      }} let counts = endMessage(cardFlip,lessLives);
+      lessLives = counts[1];
+      cardFlip = counts[0];
+    }
     
-    // const  actualizarContadores = () =>{
-    //   cardFlip++;
-    //     lessLives--;
-    // } 
-    
-    allCards.forEach((card) =>
-      card.addEventListener("click", () =>{  flipCards(card,cardFlip,lessLives)
-       
-      })
-  );
-    // Para cada card, al hacer click se llama la función flipCards
-    
+    )})
   })
-
   .catch((err) => console.error(err));
 // Se ejecuta en caso de que ocurra alguna falla en las promesas then
 
 // Al hacer click en el botón Play se oculta la ventana 1 y se muestra la ventana 2
-document.querySelector("#play").addEventListener("click", () => {
+document.querySelector(".play").addEventListener("click", () => {
   document.getElementById("window1").style.display = "none";
   document.getElementById("sideleft").style.display = "none";
   document.getElementById("sideright").style.display = "none";
@@ -46,10 +57,6 @@ document.querySelector("#play").addEventListener("click", () => {
 document.querySelector(".alias").innerHTML= `${alias}!`.toUpperCase();
 });
 
-
-
-
-
 // Al hacer click en el ícono '?' se muestra la venta de instrucciones
 document.querySelector(".icon").addEventListener("click", () => {
   document.querySelector(".modalWindow").style.display = "block";
@@ -58,6 +65,34 @@ document.querySelector(".icon").addEventListener("click", () => {
 document.querySelector(".close").addEventListener("click", () => {
   document.querySelector(".modalWindow").style.display = "none";
 });
+
+// La funcion windowReset resetea las pantallas 
+const windowReset = () =>{
+  document.querySelector("#endMessage").style.display = "none";
+  let lives = [];
+  for (let i = 0; i < 10; i++) {
+    lives[i] = document.createElement("img");
+    lives[i].className = "live";
+    lives[i].setAttribute("src","images/logovidas.png");
+    document.querySelector(".container-lives").appendChild(lives[i]);
+  }
+  
+}
+// Al hacer click en el ícono 'PLAY AGAIN' regresa al tablero de memoria reseteado
+document.querySelector(".play_again").addEventListener("click", () => windowReset());
+
+// Al hacer click en el ícono 'EXIT' regresa a la pantalla pricipal 
+document.querySelector(".exit").addEventListener("click", () =>{
+  document.getElementById("window2").style.display = "none";
+  document.getElementById("window1").style.display = "block";
+  document.getElementById("sideleft").style.display = "block";
+  document.getElementById("sideright").style.display = "block";
+  windowReset();
+  document.getElementById("nickname").value = "";
+});
+
+
+
 
 
 
