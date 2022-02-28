@@ -217,7 +217,7 @@ li {
   border: 2px solid;
   margin: 0.4em;
   border-radius: 5%;
-  height: 9em;
+  height: 7em;
   position: relative;
   transition: 0.2s ease all;
   transform: rotateY(0deg);
@@ -234,7 +234,7 @@ li {
   border: 2px solid;
   margin: 0.4em;
   border-radius: 5%;
-  height: 9em;
+  height: 7em;
   position: relative;
   transition: 0.2s ease all;
   transform: rotateY(0deg);

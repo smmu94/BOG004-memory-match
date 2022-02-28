@@ -105,10 +105,12 @@ describe('createCards', () => {
           
           it('firstCard debería tener la clase super_disabled', () => {
             const cards = createCards(dataTest);
+            console.log(cards.length);
             cards.forEach(card => {
+            console.log(flipCards(card));
             if (flipCards(card) != undefined){
-              let firstAndSecond = matchCards(flipCards(card));
-              expect(firstAndSecond[0].className).toBe('super_disabled');
+              let mock = flipCards(card);
+              expect(matchCards(mock)[0]).toBe('super_disabled');
             }
           });
           });
