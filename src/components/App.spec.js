@@ -1,4 +1,4 @@
-import { createCards, shuffle, flipCards } from '../components/App.js'
+import { createCards, shuffle, flipCards,matchCards, noMatchCards} from '../components/App.js'
 
 const dataTest = {
     items: [
@@ -54,7 +54,7 @@ describe('createCards', () => {
   it('debería contener 20 cards', () => {
     const cards = createCards(dataTest);
       expect(cards.length).toEqual(20);
-    });
+  });
 
     describe('shuffle', () => {
       it('debería ser una funcion', () => {
@@ -71,37 +71,69 @@ describe('createCards', () => {
           expect(dataTest.items[9].id != "wolverine");
           
         });
-    })
+    });
 
     describe('flipCards', () => {
       it('debería ser una funcion', () => {
         expect(typeof flipCards).toBe('function');
       });
-    
-      it('firstCard debería voltearse', () => {
-       let cards = createCards(dataTest);
-       let count;
-        cards.forEach(card =>{
-          flipCards(card)
-          if(count == 0)
-          expect(card.className).toEqual("super flip");
-        })
+      it('debería retornar dos tarjetas', () => {
+        const cards = createCards(dataTest);
+        cards.forEach(card => {
+          if (flipCards(card) != undefined)
+          expect(flipCards(card).length).toBe(2);
       });
-
+      });
+      it('firstCard debería voltearse', () => {
+        const cards = createCards(dataTest);
+        cards.forEach(card => {
+          if (flipCards(card) != undefined)
+          expect(flipCards(card)[0].className).toEqual("super flip");
+      });
+      });
       it('secondCard debería voltearse', () => {
-        let cards = createCards(dataTest);
-        let count;
-         cards.forEach(card =>{
-           flipCards(card)
-           if(count == 1)
-           expect(card.className == "super flip").toBe(true);
-         })
-       });
+        const cards = createCards(dataTest);
+        cards.forEach(card => {
+          if (flipCards(card) != undefined)
+          expect(flipCards(card)[1].className).toEqual("super flip");
+      });
+      });
+        describe('matchCards', () => {
+          it('debería ser una funcion', () => {
+          expect(typeof matchCards).toBe('function');
+          });
+          
+          it('firstCard debería tener la clase super_disabled', () => {
+            const cards = createCards(dataTest);
+            cards.forEach(card => {
+            if (flipCards(card) != undefined){
+              let firstAndSecond = matchCards(flipCards(card));
+              expect(firstAndSecond[0].className).toBe('super_disabled');
+            }
+          });
+          });
+        describe('noMatchCards', () => {
+          it('debería ser una funcion', () => {
+          expect(typeof noMatchCards).toBe('function');
+          });
+          it('firstCard debería tener la clase super', () => {
+            const cards = createCards(dataTest);
+            cards.forEach(card => {
+            if (flipCards(card) != undefined){
+              let firstAndSecond = noMatchCards(flipCards(card));
+              expect(firstAndSecond[0].className).toBe('super');
+            }
+          });
+          });
 
 
-    
-    })
-})
+
+
+        });
+    });
+  });
+});     
+
 
 
 
