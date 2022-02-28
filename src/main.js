@@ -37,7 +37,7 @@ fetch("../data/marvel/marvel.json")
             cardFlip++;
             matchCards();
           } else {
-            if (lessLives >= 0) {
+            if (lessLives >= 0) { //Descontar vidas cada nomatch//
               lessLives--;
               lives = document.querySelector(".container-lives");
               lives.removeChild(lives.firstElementChild);

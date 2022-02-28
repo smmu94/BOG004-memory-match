@@ -87,24 +87,25 @@ const endMessage = (cardFlip, lessLives, allCards) => {
   //Se declara la función endMessage la cual recibe el número de matchs y no matchs
   //Emite un mensaje dependiendo si ganó o perdió
 
-  if (cardFlip == 10 && lessLives > 0) {
+  if (cardFlip == 10 && lessLives > 0) {  //Mensaje Ganador //
     let finished = document.getElementById("finished");
     finished.innerHTML = `Congrats!!! You've Finished the game with ${lessLives} lives`;
     const imageEndGame = document.querySelector(".imgend");
     imageEndGame.setAttribute("src", "images/wingame.jpg");
+    //Reiniciar tarjetas y vidas//
     cardFlip = 0;
     lessLives = 10;
-    document.querySelector(".endGame").appendChild(imageEndGame);
     allCards.forEach((card) => card.className = "super");
     document.getElementById("endMessage").style.display = "flex";
-  } else if (lessLives == 0) {
+
+  } else if (lessLives == 0) { //Mensaje Perdedor //
     let finished = document.getElementById("finished");
     finished.innerHTML = `Game over! You lost all the lives`;
     const imageEndGame = document.querySelector(".imgend");
     imageEndGame.setAttribute("src", "images/lostgame.jpg");
+    //Reiniciar tarjetas y vidas//
     cardFlip = 0;
     lessLives = 10;
-    document.querySelector(".endGame").appendChild(imageEndGame);
     allCards.forEach((card) => card.className = "super");
     document.getElementById("endMessage").style.display = "flex";
   }
