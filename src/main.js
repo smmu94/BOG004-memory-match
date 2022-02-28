@@ -7,7 +7,7 @@ import {
   endMessage,
 } from "./components/App.js";
 
-fetch("../data/marvel/marvel.json")
+fetch("./data/marvel/marvel.json")
   // Interfaz que permite traer la data de marvel.json de acuerdo a la ruta
   .then((resp) => resp.json())
   // Promesa que da respuesta al estado del callback
