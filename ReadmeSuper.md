@@ -1,8 +1,8 @@
-## Memory match Marvel Universe
+# Memory match Marvel Universe
 
 Nuestro proyecto es un juego de memoria con tematica de Marvel Universe, en donde el usuari@ identifica el superhéroe y debe buscar la tarjeta identica para que haga match, el usuario cuenta con 10 vidas para realizarlo si logra terminarlo se le mostrara un mensaje ganador, de lo contrario un mensaje perdedor, adicionalmente se le da la opcion de volver a jugar o salir del juego.
 
-# Investigación UX:
+## Investigación UX:
 ¿Quiénes son los principales usuarios de producto?
 Nuestros principales usuarios son los geek de Marvel.
 
@@ -20,7 +20,7 @@ En la segunda pantalla el usuario podra ver su alias junto a las 10 vidas que le
 Cuando el usuario quiera distraerse o quiera afianzar su memoria con un juego de habilidad mental.
 
 
-# Historias de Usuario
+## Historias de Usuario
 Historia de Usuiario 1 Pantalla Principal.
 Descripción: YO como usuario Geek de Marvel QUIERO  ingresar al juego con mi nickname PARA reconocerme y poder jugar.
 
@@ -77,7 +77,7 @@ imagen (https://www.figma.com/file/2gEEPRESkmDQ8IhumNjPbC/Dise%C3%B1o?node-id=0%
 
 
 ## Objetivos de aprendizaje
-- [ ] HTML Uso de HTML semántico 
+- [x] HTML Uso de HTML semántico 
 
 Links
 CSS

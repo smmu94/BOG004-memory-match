@@ -68,7 +68,7 @@ const matchCards = () => {
 return [firstCard,secondCard];
 };
 
-const noMatchCards = () => {
+const noMatchCards = (firstCard,secondCard) => {
   // Se declara la función noMatchCards, en la cual se remueve la clase "flip", es decir
   // las tarjetas regresan a su posición inicial
   lockBox = true;
@@ -81,6 +81,7 @@ const noMatchCards = () => {
     return [firstCard,secondCard];
   }, 1300);
   count = -1;
+  
 };
 
 const endMessage = (cardFlip, lessLives, allCards) => {

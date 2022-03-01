@@ -42,7 +42,7 @@ fetch("./data/marvel/marvel.json")
               lives = document.querySelector(".container-lives");
               lives.removeChild(lives.firstElementChild);
             }
-             noMatchCards();
+            noMatchCards(firstAndSecond);
           }
         }
         let counts = endMessage(cardFlip, lessLives, allCards);
