@@ -1,11 +1,10 @@
 import {
   createCards,
   shuffle,
-  flipCards,
-  matchCards,
-  noMatchCards,
-  endMessage
+
 } from "../components/App.js";
+
+
 
 const dataTest = {
   items: [
@@ -72,114 +71,28 @@ describe("createCards", () => {
     expect(cards.length).toEqual(20);
   });
 
-  describe("shuffle", () => {
-    it("debería ser una funcion", () => {
+  it("card debería tener la clase super", () => {
+    const cards = createCards(dataTest);
+    expect(cards[1].className).toEqual("super");
+  });
+ 
+});
+
+
+describe("shuffle", () => {
+  it("debería ser una funcion", () => {
       expect(typeof shuffle).toBe("function");
-    });
-
-    it('el id="hulk" no debe estar en la segunda posición', () => {
-      shuffle(dataTest.items);
-      expect(dataTest.items[1].id).not.toEqual("hulk");
-    });
-
-    it('el id="wolverine" no debe estar en la última posición', () => {
-      shuffle(dataTest.items);
-      expect(dataTest.items[9].id != "wolverine");
-    });
   });
 
-  describe("flipCards", () => {
-    it("debería ser una funcion", () => {
-      expect(typeof flipCards).toBe("function");
-    });
-    it("debería retornar dos tarjetas", () => {
-      const cards = createCards(dataTest);
-      cards.forEach((card) => {
-        if (flipCards(card) != undefined)
-          expect(flipCards(card).length).toBe(2);
-      });
-    });
-    it("firstCard debería voltearse", () => {
-      const cards = createCards(dataTest);
-      cards.forEach((card) => {
-        if (flipCards(card) != undefined)
-          expect(flipCards(card)[0].className).toEqual("super flip");
-      });
-    });
-    it("secondCard debería voltearse", () => {
-      const cards = createCards(dataTest);
-      cards.forEach((card) => {
-        if (flipCards(card) != undefined)
-          expect(flipCards(card)[1].className).toEqual("super flip");
-      });
-    });
+  it('el id="hulk" no debe estar en la segunda posición', () => {
+      shuffle(dataTest.items);
+      expect(dataTest.items[1].id).not.toEqual("hulk");
+  });
 
-    
-
-    describe("matchCards", () => {
-      it("debería ser una funcion", () => {
-        expect(typeof matchCards).toBe("function");
-      });
-      let data = dataTest.items.concat(dataTest.items);
-      let firstCard;
-      let secondCard;
-      for (let i = 0; i < data.length; i++) {
-      let card = document.createElement("div");
-      card.setAttribute("data-marvel", data[i].id);
-      card.className = "super";
-      if (i == 0) firstCard = card;
-      if (i == 10) secondCard = card;
-    }
-    let card; 
-      it("firstCard debería tener la clase super_disabled", () => {
-        if (firstCard.dataset.marvel == secondCard.dataset.marvel)
-          card = matchCards();
-        expect(card[0].className).toBe("super_disabled");
-      });
-    });
-  
-    describe("noMatchCards", () => {
-      it("debería ser una funcion", () => {
-        expect(typeof noMatchCards).toBe("function");
-      });
-      let data = dataTest.items.concat(dataTest.items);
-      let firstCard;
-      let secondCard;
-      let firstAndsecond;
-      for (let i = 0; i < data.length; i++) {
-        let card = document.createElement("div");
-        card.setAttribute("data-marvel", data[i].id);
-        card.className = "super flip";
-        if (i == 1) firstCard = card;
-        if (i == 10) secondCard = card;
-      }
-      it("firstCard debería tener la clase super", () => {
-        if (firstCard.dataset.marvel != secondCard.dataset.marvel)
-        firstAndsecond = noMatchCards(firstCard,secondCard);
-        expect(firstAndsecond[0].className).toBe("super");
-      });
-      });
-    });
-    describe("endMessage", () => {
-      it("debería ser una funcion", () => {
-        expect(typeof endMessage).toBe("function");
-      });
-      let allCards = [];
-      let cardFlip = 2;
-      let lessLives = 0;
-      let data = dataTest.items.concat(dataTest.items);
-      for (let i = 0; i < data.length; i++) {
-        let card = document.createElement("div");
-        card.setAttribute("data-marvel", data[i].id);
-        card.className = "super flip";
-        allCards.push(card);
-      }
-      it("debería retornar los contadores reiniciados", () => {
-
-      if(lessLives == 0)
-        expect(endMessage(cardFlip, lessLives, allCards)).toBe([0,10]);
-      });
-
-    });
-  
+  it('el id="wolverine" no debe estar en la última posición', () => {
+      shuffle(dataTest.items);
+      expect(dataTest.items[9].id != "wolverine");
+  });
 });
+  
+

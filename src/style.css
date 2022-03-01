@@ -242,6 +242,10 @@ li {
   z-index: 3;
   animation: iniciar 3s;
 }
+.super_disabled{
+  
+  transform: rotateY(180deg);
+}
 
 @keyframes iniciar {
   20%,
@@ -260,7 +264,7 @@ li {
 }
 
 .super .back,
-.super_disabled .image {
+.super_disabled .back {
   /*Estilo de la cara posterior con el logo*/
   width: 100%;
   height: 100%;
@@ -270,7 +274,7 @@ li {
 }
 
 .super .image,
-.super_disabled .back {
+.super_disabled .image {
   /*Estilo de la cara de los superhéroes*/
   width: 100%;
   height: 100%;
