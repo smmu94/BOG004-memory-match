@@ -81,11 +81,11 @@ Prototipo Celular
 
 
 Prototipos HD
-![Prototipoprincipal] (src/images/principalpan.png)
+![Prototipoprincipal](src/images/principalpan.png)
 
-![Prototipoback] (src/images/backfondo.png)
+![Prototipoback](src/images/backfondo.png)
 
-![Prototipoimage] (src/images/imagefondo.png)
+![Prototipoimage](src/images/imagefondo.png)
 
 
 ## 4-Test de usabilidad
