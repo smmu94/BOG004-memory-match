@@ -81,7 +81,11 @@ Prototipo Celular
 
 
 Prototipos HD
-imagen (https://www.figma.com/file/2gEEPRESkmDQ8IhumNjPbC/Dise%C3%B1o?node-id=0%3A1)
+![Prototipoprincipal] (src/images/principalpan.png)
+
+![Prototipoback] (src/images/backfondo.png)
+
+![Prototipoimage] (src/images/imagefondo.png)
 
 
 ## 4-Test de usabilidad
