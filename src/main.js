@@ -18,9 +18,9 @@ fetch("./data/marvel/marvel.json")
       document.getElementById("container").appendChild(card)
     );
     
-    let lives = 0;
+    let lives = 0; //variable de vidas
     let cardFlip = 0;
-    let lessLives = 10;
+    let lessLives = 10; //contador para nomatch
     //Al darle click a cada tarjeta se llama a la funcion flipCards, si las dataset de ambas
     // tarjetas son iguales se llama a la funcion matchCards, si no se llama a la funcion noMatchCards
     allCards.forEach((card) => {
@@ -74,24 +74,24 @@ const flipCards = (card) => {
 
 const matchCards = (firstAndSecond) => {
   // Se declara la función matchCards, en este caso ya se sabe que las tarjetas son iguales
-  // Se les asigna la clase super_disabled para no permitir que se vuelvan a voltear
+  // Se les asigna la clase super_disabilitar para no permitir que se vuelvan a voltear
   firstAndSecond[0].className = "super_disabled";
   firstAndSecond[1].className = "super_disabled";
   count = -1;
-  lockBox = false; //se vuelve a hacer false el lockBox para poder seleccionar nuevas tarjetas de a dos
+  lockBox = false; //se vuelve a hacer false el lockBox para habilitar la seleccion de nuevas tarjetas de a dos
 return firstAndSecond;
 };
 
 const noMatchCards = (firstAndSecond) => {
   // Se declara la función noMatchCards, en la cual se remueve la clase "flip", es decir
   // las tarjetas regresan a su posición inicial
-  lockBox = true;
+  lockBox = true; //deshabilitar tablero para seleccionar
   setTimeout(() => {
     //Un setTimeout para dejar que se visualicen las tarjetas por un tiempo
     // antes de que vuelvan a girar
     firstAndSecond[0].classList.remove("flip");
     firstAndSecond[1].classList.remove("flip");
-    lockBox = false;
+    lockBox = false;  //habilitar tablero para seleccionar//
     return firstAndSecond;
   }, 800);
   count = -1;

@@ -158,7 +158,7 @@ li {
   font-family: sans-serif;
   font-weight: bolder;
   font-stretch: semi-condensed;
-  border-radius: 20%;
+  border-radius: 1.25em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 #play_again,
