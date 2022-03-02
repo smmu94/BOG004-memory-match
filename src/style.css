@@ -209,7 +209,7 @@ li {
   margin: auto;
 }
 
-.super {
+.super, .super_disabled  {
   /*Estilo de tarjeta*/
   width: 16%;
   padding: 0;
@@ -226,22 +226,7 @@ li {
   z-index: 3;
   animation: iniciar 3s;
 }
-.super_disabled {
-  /*Estilo de tarjeta match*/
-  width: 16%;
-  padding: 0;
-  box-sizing: border-box;
-  border: 2px solid;
-  margin: 0.4em;
-  border-radius: 5%;
-  height: 7em;
-  position: relative;
-  transition: 0.2s ease all;
-  transform: rotateY(0deg);
-  transform-style: preserve-3d;
-  z-index: 3;
-  animation: iniciar 3s;
-}
+
 .super_disabled{
   
   transform: rotateY(180deg);
