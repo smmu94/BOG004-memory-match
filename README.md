@@ -3,10 +3,10 @@
 ## Índice
 
 
-* [1. Investigación UX](## 1-Investigación UX)
-* [2. Historias de Usuario](## 2-Historias de Usuario)
-* [3. Prototipos](## 3-Prototipos)
-* [4. Test de usabilidad](## 4-Test de usabilidad)
+* [1. Investigación UX](##1-InvestigaciónUX)
+* [2. Historias de Usuario](##2-HistoriasdeUsuario)
+* [3. Prototipos](##3-Prototipos)
+* [4. Test de usabilidad](##4-Testdeusabilidad)
 
 ***
 
