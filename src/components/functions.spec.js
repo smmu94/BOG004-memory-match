@@ -2,7 +2,7 @@ import {
   createCards,
   shuffle,
 
-} from "../components/App.js";
+} from "../components/functions.js";
 
 
 
@@ -94,5 +94,7 @@ describe("shuffle", () => {
       expect(dataTest.items[9].id != "wolverine");
   });
 });
+
+
   
 
