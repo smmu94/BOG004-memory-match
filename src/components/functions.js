@@ -1,4 +1,4 @@
-import { winnerMessage, loserMessage } from "../newMain.js";
+import { endMessage } from "../main.js";
 
 const createCards = (data) => {
   const doubleCards = data.items.concat(data.items);
@@ -50,6 +50,7 @@ function flipCards() {
     } else {
       noMatchCards(firstCard, secondCard);
     }
+   
   }
 }
 
@@ -60,7 +61,7 @@ const matchCards = (firstCard, secondCard) => {
   firstCard.removeEventListener("click", flipCards);
   secondCard.removeEventListener("click", flipCards);
   if(cardFlip === 3){
-      endMessage();
+      endMessage(cardFlip, lessLives);
   }
 };
 
@@ -72,24 +73,10 @@ const noMatchCards = (firstCard, secondCard) => {
     firstCard.classList.remove("flip");
     secondCard.classList.remove("flip");
     if(lessLives === 0){
-        endMessage();
+        endMessage(cardFlip, lessLives);
     }
   }, 1000);
 };
 
-
-
-const endMessage = () => {
-    if(cardFlip === 3){
-        winnerMessage(lessLives);
-        lessLives = 3;
-        cardFlip = 0;
-    }
-    if(lessLives === 0){
-        loserMessage();
-        lessLives = 3;
-        cardFlip = 0;
-    }
-};
 
 export { createCards, shuffle, flipCards };

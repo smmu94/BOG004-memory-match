@@ -1,61 +1,84 @@
 import getData from "./components/getData.js";
 import { createCards, shuffle, flipCards } from "./components/functions.js";
 
+let allCards = [];
+// eslint-disable-next-line no-unused-vars
+// window.data =() => {
 getData()
   .then((data) => {
-    const allCards = createCards(data);
-    console.log(allCards);
-    shuffle(allCards);
-    const cards = allCards;
-    cards.forEach((card) =>
-      document.getElementById("container").appendChild(card)
-    );
+    allCards = createCards(data);
+    init();
     modalWindow();
     showSecondView();
-    cards.forEach((card) => card.addEventListener("click", flipCards));
-
     document
       .querySelector(".play_again")
-      .addEventListener("click", () => windowReset(allCards));
+      .addEventListener("click", () => windowReset());
     // Al hacer click en el ícono 'EXIT' regresa a la pantalla pricipal
     document.querySelector(".exit").addEventListener("click", () => {
       location.reload();
     });
   })
   .catch((error) => console.log(error));
+// };
+const init = () => {
+  shuffle(allCards);
+    allCards.forEach((card) =>
+      document.getElementById("container").appendChild(card)
+    );
+    allCards.forEach((card) => card.addEventListener("click", flipCards));
+}
+
 
 const modalWindow = () => {
   //  Al hacer click en el ícono '?' se muestra la venta de instrucciones
   document.querySelector(".icon").addEventListener("click", () => {
-    document.querySelector(".modalWindow").style.display = "block";
+    return document.querySelector(".modalWindow").style.display = "block";
   });
   // Al hacer click en el ícono 'x' se cierra la venta de instrucciones
   document.querySelector(".close").addEventListener("click", () => {
-    document.querySelector(".modalWindow").style.display = "none";
+    return document.querySelector(".modalWindow").style.display = "none";
   });
 };
 
+const getLives = () => {
+  let lives;
+  for (let i = 0; i < 10; i++) {
+    lives = document.createElement("img");
+    lives.className = "live";
+    lives.setAttribute("src", "images/logovidas.png");
+    document.querySelector(".container-lives").appendChild(lives);
+  }
+}
+
 const showSecondView = () => {
+  let alias;
   document.querySelector(".play").addEventListener("click", () => {
     document.getElementById("window1").style.display = "none";
     document.getElementById("sideleft").style.display = "none";
     document.getElementById("sideright").style.display = "none";
     document.getElementById("window2").style.display = "block";
-    let alias = document.getElementById("nickname").value;
+    alias = document.getElementById("nickname").value;
     document.querySelector(".alias").innerHTML = `${alias}!`.toUpperCase();
-
-    for (let i = 0; i < 10; i++) {
-      let lives = document.createElement("img");
-      lives.className = "live";
-      lives.setAttribute("src", "images/logovidas.png");
-      document.querySelector(".container-lives").appendChild(lives);
-    }
+     getLives();
   });
 };
 
-const winnerMessage = (lessLives) => {
+const endMessage = (cardFlip, lessLives) => {
+      if(cardFlip === 3){
+          winnerMessage();
+          lessLives = 3;
+          cardFlip = 0;
+      }
+      if(lessLives === 0){
+          loserMessage();
+          lessLives = 3;
+          cardFlip = 0;
+      }
+  };
+
+const winnerMessage = () => {
   let finished = document.getElementById("finished");
-  finished.innerHTML = `Congrats!!! You've Finished the game with ${lessLives} lives`;
+  finished.innerHTML = `Congrats!!! You've Finished the game`;
   const imageEndGame = document.querySelector(".imgend");
   imageEndGame.setAttribute("src", "images/wingame.jpg");
   document.getElementById("endMessage").style.display = "flex";
@@ -69,19 +92,12 @@ const loserMessage = () => {
   document.getElementById("endMessage").style.display = "flex";
 };
 
-const windowReset = (allCards) => {
+const windowReset = () => {
   document.querySelector(".container-lives").innerHTML = "";
   document.querySelector("#endMessage").style.display = "none";
-  shuffle(allCards);
-  allCards.forEach((card) => {
-    document.getElementById("container").appendChild(card);
-  });
-  for (let i = 0; i < 10; i++) {
-    let lives = document.createElement("img");
-    lives.className = "live";
-    lives.setAttribute("src", "images/logovidas.png");
-    document.querySelector(".container-lives").appendChild(lives);
-  }
+  getLives();
+  init();
+  allCards.forEach((card) => card.classList.remove("flip"));
 };
 
-export { winnerMessage, loserMessage };
+export { endMessage, winnerMessage, loserMessage, modalWindow , getLives, showSecondView, windowReset};

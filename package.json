@@ -5,8 +5,8 @@
   "main": "src/index.html",
   "license": "MIT",
   "scripts": {
-    "pretest": "eslint .",
-    "test": "jest --coverage",
+    "pretest.out": "eslint .",
+    "test": "jest --env=jsdom --coverage ",
     "start": "serve -s src/",
     "deploy": "gh-pages -d src"
   },
@@ -23,6 +23,19 @@
     "node": ">=14.x"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jest-environment-jsdom",
+    "collectCoverageFrom": [
+      "src/components/functions.js",
+      "src/components/getData.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/main.js"
+    ],"testPathIgnorePatterns" : [
+      "<rootDir>/src/main.js" 
+    ]
+  },
+  "dependencies": {
+    "jest-fetch-mock": "^3.0.3",
+    "node-fetch": "^3.2.5"
   }
 }

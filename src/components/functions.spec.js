@@ -1,10 +1,10 @@
+/* eslint-disable no-undef */
 import {
   createCards,
   shuffle,
-
-} from "../components/functions.js";
-
-
+  flipCards,
+  endMessage,
+} from "./functions.js";
 
 const dataTest = {
   items: [
@@ -75,26 +75,65 @@ describe("createCards", () => {
     const cards = createCards(dataTest);
     expect(cards[1].className).toEqual("super");
   });
- 
 });
-
 
 describe("shuffle", () => {
   it("debería ser una funcion", () => {
-      expect(typeof shuffle).toBe("function");
+    expect(typeof shuffle).toBe("function");
   });
 
   it('el id="hulk" no debe estar en la segunda posición', () => {
-      shuffle(dataTest.items);
-      expect(dataTest.items[1].id).not.toEqual("hulk");
+    shuffle(dataTest.items);
+    expect(dataTest.items[1].id).not.toEqual("hulk");
   });
 
   it('el id="wolverine" no debe estar en la última posición', () => {
-      shuffle(dataTest.items);
-      expect(dataTest.items[9].id != "wolverine");
+    shuffle(dataTest.items);
+    expect(dataTest.items[9].id != "wolverine");
   });
 });
 
+const funcion = jest.fn(flipCards);
+const message = jest.fn(endMessage);
+describe("flipCards", () => {
+  it("debería ser una funcion", () => {
+    expect(typeof funcion).toBe("function");
+  });
+  it("debería voltear las cartas", () => {
+    const cards = createCards(dataTest);
+    cards.forEach((card) => card.addEventListener("click", funcion));
+    cards[0].click();
+    expect(cards[0].className).toEqual("super flip");
+  });
 
-  
 
+    let cardFlip = 0;
+  it("si la data coincide debería llamarse la funcion match", () => {
+    let cardnum = 1;
+    const cards = createCards(dataTest);
+    cards.forEach((card) => card.addEventListener("click", funcion));
+    cards[cardnum].click();
+    cards[cardnum + 10].click();
+    if (cards[cardnum].dataset.marvel === cards[cardnum + 10].dataset.marvel) {
+      cardFlip++;
+      expect(cards[cardnum].className).toEqual("super flip");
+      if (cardFlip === 3) {
+        expect(message).toHaveBeenCalled();
+      }
+    }
+  });
+
+ 
+  test("si la data no coincide debería llamarse la funcion noMatch", () => {
+    let cardnum = 1;
+    const cards = createCards(dataTest);
+    cards.forEach((card) => card.addEventListener("click", funcion));
+    cards[cardnum].click();
+    cards[cardnum + 10].click();
+    if (cards[cardnum].dataset.marvel !== cards[cardnum + 1].dataset.marvel) {
+      jest.setTimeout(() => {
+        return expect(cards[cardnum].className).toEqual("super"); 
+      }, 5000);  
+    }
+  });
+});
