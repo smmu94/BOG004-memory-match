@@ -63,18 +63,6 @@ const showSecondView = () => {
   });
 };
 
-const endMessage = (cardFlip, lessLives) => {
-      if(cardFlip === 3){
-          winnerMessage();
-          lessLives = 3;
-          cardFlip = 0;
-      }
-      if(lessLives === 0){
-          loserMessage();
-          lessLives = 3;
-          cardFlip = 0;
-      }
-  };
 
 const winnerMessage = () => {
   let finished = document.getElementById("finished");
@@ -100,4 +88,4 @@ const windowReset = () => {
   allCards.forEach((card) => card.classList.remove("flip"));
 };
 
-export { endMessage, winnerMessage, loserMessage, modalWindow , getLives, showSecondView, windowReset};
+export { winnerMessage, loserMessage, modalWindow , getLives, showSecondView, windowReset};

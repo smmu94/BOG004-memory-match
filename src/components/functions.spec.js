@@ -3,7 +3,6 @@ import {
   createCards,
   shuffle,
   flipCards,
-  endMessage,
 } from "./functions.js";
 
 const dataTest = {
@@ -94,7 +93,6 @@ describe("shuffle", () => {
 });
 
 const funcion = jest.fn(flipCards);
-const message = jest.fn(endMessage);
 describe("flipCards", () => {
   it("debería ser una funcion", () => {
     expect(typeof funcion).toBe("function");
